@@ -24,13 +24,19 @@ set(SRCS_DUTILS
   DUtils/Random.cpp
   DUtils/Timestamp.cpp)
 
-find_package(OpenCV 4 QUIET)
-if(NOT OpenCV_FOUND)
-   find_package(OpenCV 2.4.3 QUIET)
-   if(NOT OpenCV_FOUND)
-      message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
-   endif()
-endif()
+  SET(OpenCV_DIR /home/lin/develop/3rd/opencv/install/opencv-4.2.0/lib/cmake/opencv4/)
+  find_package(OpenCV 4.2.0 REQUIRED)
+  if(NOT OpenCV_FOUND)
+     find_package(OpenCV 2.4.3 QUIET)
+     if(NOT OpenCV_FOUND)
+        message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
+     endif()
+  endif()
+  message(STATUS "OpenCV library status:")
+  message(STATUS "    config: ${OpenCV_DIR}")
+  message(STATUS "    version: ${OpenCV_VERSION}")
+  message(STATUS "    libraries: ${OpenCV_LIBS}")
+  message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
